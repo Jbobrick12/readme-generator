@@ -40,6 +40,13 @@ inquirer
       "README.md",
       `## Description
       ${answers.description}
+
+      ## Table of Contents
+      - [Description](#description)
+      - [Installation](#installation)
+      - [Usage](#usage)
+      - [Credits](#credits)
+      - [License](#license)
       
       ## Installation
       ${answers.installation}
@@ -57,7 +64,7 @@ inquirer
           console.error(err);
           return;
         }
-        console.log("HTML file generated successfully!");
+        console.log("README generated successfully!");
       }
     );
   })

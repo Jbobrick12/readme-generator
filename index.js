@@ -2,7 +2,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const questions = [
+inquirer
+  .prompt([
     {
         type: "input",
         name: "title",
@@ -17,21 +18,49 @@ const questions = [
         type: "input",
         name: "installation",
         message: "What are the steps required to install your project?"
-    }
+    },
     {
         type: "input",
         name: "usage",
         message: "Provide instructions and examples for use:"
-    }
+    },
     {
         type: "input",
         name: "credits",
         message: "Please provide any collaborators or third-party assets used:"
-    }
+    },
     {
         type: "input",
         name: "license",
         message: "Please provide the license associated with your project:"
-    }
-    // add more questions here
-];
+    },
+])
+.then((answers) => {
+    fs.writeFile(
+      "README.md",
+      `## Description
+      ${answers.description}
+      
+      ## Installation
+      ${answers.installation}
+      
+      ## Usage
+      ${answers.usage}
+      
+      ## Credits
+      ${answers.credits}
+      
+      ## License
+      ${answers.license}`,
+      (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        console.log("HTML file generated successfully!");
+      }
+    );
+  })
+  .catch((error) => {
+    console.error(error);
+  });

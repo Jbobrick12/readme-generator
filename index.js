@@ -1,7 +1,7 @@
 // Making sure to include inquirer and fs
 const inquirer = require('inquirer');
 const fs = require('fs');
-
+// Questions that the user will answer
 inquirer
   .prompt([
     {
@@ -29,7 +29,7 @@ inquirer
         name: "credits",
         message: "Please provide any collaborators or third-party assets used:"
     },
-])
+]) // Creating the README file and adding responses to it
 .then((answers) => {
     fs.writeFile(
       "README.md",
@@ -81,7 +81,7 @@ SOFTWARE.`,
         console.log("README generated successfully!");
       }
     );
-  })
+  }) // Catching any errors
   .catch((error) => {
     console.error(error);
   });
